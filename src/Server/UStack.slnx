@@ -1,0 +1,11 @@
+<Solution>
+  <Folder Name="/Modules/" />
+  <Folder Name="/Modules/Identity/">
+    <Project Path="Modules/Identity/UStack.Identity.Application/UStack.Identity.Application.csproj" />
+    <Project Path="Modules/Identity/UStack.Identity.Domain/UStack.Identity.Domain.csproj" />
+    <Project Path="Modules/Identity/UStack.Identity.Infrastructure/UStack.Identity.Infrastructure.csproj" />
+    <Project Path="Modules/Identity/UStack.Identity.Tests/UStack.Identity.Tests.csproj" />
+  </Folder>
+  <Project Path="UStack.Api/UStack.Api.csproj" />
+  <Project Path="UStack.Shared/UStack.Shared.csproj" />
+</Solution>
