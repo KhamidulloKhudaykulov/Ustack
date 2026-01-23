@@ -26,7 +26,7 @@ namespace UStack.Identity.Application.UseCases.Users.AssignRole
             if (user == null)
                 return Result.Failure(new Error("User.NotFound", "User not found"));
 
-            var role = await _roleRepository.GetByIdAsync(request.RoleId);
+            var role = await _roleRepository.SelectByIdAsync(request.RoleId);
             if (role == null)
                 return Result.Failure(new Error("UserRole.InvalidRole", "Role cannot be null"));
 
@@ -38,5 +38,4 @@ namespace UStack.Identity.Application.UseCases.Users.AssignRole
             return Result.Success();
         }
     }
-
 }
