@@ -12,6 +12,7 @@
 
   <ItemGroup>
     <ProjectReference Include="..\Modules\Identity\UStack.Identity.Application\UStack.Identity.Application.csproj" />
+    <ProjectReference Include="..\Modules\Identity\UStack.Identity.Infrastructure\UStack.Identity.Infrastructure.csproj" />
   </ItemGroup>
 
 </Project>
