@@ -1,7 +1,7 @@
 ﻿using Microsoft.EntityFrameworkCore;
-using UStack.Identity.Infrastructure.Extensions;
+using UStack.Users.Infrastructure.Extensions;
 
-namespace UStack.Identity.Infrastructure;
+namespace UStack.Users.Infrastructure;
 
 public sealed class ApplicationDbContext : DbContext
 {

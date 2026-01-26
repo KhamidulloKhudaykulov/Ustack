@@ -1,8 +1,10 @@
-﻿using Microsoft.Extensions.DependencyInjection;
+﻿using FluentValidation;
+using Microsoft.Extensions.DependencyInjection;
+using UStack.Identity.Application.UseCases.Users.CreateUser;
 
 namespace UStack.Identity.Application.Extensions;
 
-public static class DependencyInjection
+public static class DependencyInjectionExtension
 {
     public static IServiceCollection AddApplication(this IServiceCollection services)
     {
@@ -10,6 +12,9 @@ public static class DependencyInjection
         {
             cfg.RegisterServicesFromAssembly(AssemblyReference.Assembly);
         });
+
+        //services.AddValidatorsFromAssemblyContaining<CreateUserValidator>()
+        //    .AddFluentValidationAutoValidation();
 
         return services;
     }

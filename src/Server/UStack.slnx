@@ -6,6 +6,11 @@
     <Project Path="Modules/Identity/UStack.Identity.Infrastructure/UStack.Identity.Infrastructure.csproj" />
     <Project Path="Modules/Identity/UStack.Identity.Tests/UStack.Identity.Tests.csproj" />
   </Folder>
+  <Folder Name="/Modules/Users/">
+    <Project Path="Modules/Users/UStack.Users.Application/UStack.Users.Application.csproj" />
+    <Project Path="Modules/Users/UStack.Users.Domain/UStack.Users.Domain.csproj" />
+    <Project Path="Modules/Users/UStack.Users.Infrastructure/UStack.Users.Infrastructure.csproj" />
+  </Folder>
   <Project Path="UStack.Api/UStack.Api.csproj" />
   <Project Path="UStack.Shared/UStack.Shared.csproj" />
 </Solution>

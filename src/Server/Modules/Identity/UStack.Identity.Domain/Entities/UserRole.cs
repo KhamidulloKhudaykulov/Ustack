@@ -3,16 +3,19 @@ using UStack.Identity.Domain.Primitives;
 
 namespace UStack.Identity.Domain.Entities;
 
-public class UserRole : Entity
+public class UserRole
 {
+    public Guid Id { get; private set; }
     public Guid UserId { get; private set; }
     public Guid RoleId { get; private set; }
 
     public User User { get; private set; } = default!;
     public Role Role { get; private set; } = default!;
 
-    private UserRole(Guid id, User user, Role role) : base(id)
+    private UserRole() { }
+    private UserRole(Guid id, User user, Role role)
     {
+        Id = id;
         User = user ?? throw new ArgumentNullException(nameof(user));
         Role = role ?? throw new ArgumentNullException(nameof(role));
         UserId = user.Id;

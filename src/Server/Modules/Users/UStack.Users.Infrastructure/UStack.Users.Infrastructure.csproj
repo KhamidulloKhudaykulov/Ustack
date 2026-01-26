@@ -15,8 +15,8 @@
   </ItemGroup>
 
   <ItemGroup>
-    <ProjectReference Include="..\UStack.Identity.Application\UStack.Identity.Application.csproj" />
-    <ProjectReference Include="..\UStack.Identity.Domain\UStack.Identity.Domain.csproj" />
+    <ProjectReference Include="..\UStack.Users.Application\UStack.Users.Application.csproj" />
+    <ProjectReference Include="..\UStack.Users.Domain\UStack.Users.Domain.csproj" />
   </ItemGroup>
 
 </Project>
