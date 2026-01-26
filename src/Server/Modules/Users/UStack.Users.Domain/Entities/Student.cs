@@ -1,4 +1,8 @@
-﻿using UStack.Users.Domain.Primitives;
+﻿using UStack.Users.Domain.Enums;
+using UStack.Users.Domain.Interfaces;
+using UStack.Users.Domain.Outcome;
+using UStack.Users.Domain.Primitives;
+using UStack.Users.Domain.States.Students;
 
 namespace UStack.Users.Domain.Entities;
 
@@ -12,13 +16,15 @@ public class Student : Entity
     public string LastName { get; private set; } = default!;
     public string Email { get; private set; } = default!;
 
-    public static Student Create(
+    private IStudentStatusState? _state;
+
+    public static Result<Student> Create(
         Guid identityUserId,
         string firstName,
         string lastName,
         string email)
     {
-        var Student = new Student(Guid.NewGuid())
+        var student = new Student(Guid.NewGuid())
         {
             IdentityUserId = identityUserId,
             FirstName = firstName,
@@ -26,7 +32,9 @@ public class Student : Entity
             Email = email
         };
 
-        return Student;
+        student._state = new PendingStudentState();
+
+        return student;
     }
 
     public void UpdateProfile(
@@ -43,4 +51,16 @@ public class Student : Entity
         if (!string.IsNullOrWhiteSpace(email))
             Email = email;
     }
+
+
+    public UserState State { get; private set; } = UserState.Inactive;
+    
+    public void SetState(IStudentStatusState state) => _state = state;
+    public void ChangeState(UserState newState) => State = newState;
+    
+    public Result Activate() => _state!.Activate(this);
+    public Result Deactivate() => _state!.Deactivate(this);
+    public Result Lock() => _state!.Lock(this);
+    public Result Archive() => _state!.Archive(this);
+    public Result SetPending() => _state!.SetPending(this);
 }
