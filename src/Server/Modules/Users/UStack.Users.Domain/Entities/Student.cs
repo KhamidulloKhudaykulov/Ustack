@@ -31,7 +31,6 @@ public class Student : Entity
         }
     }
 
-    public Guid IdentityUserId { get; private set; }
     public string FirstName { get; private set; } = default!;
     public string LastName { get; private set; } = default!;
     public string Email { get; private set; } = default!;
@@ -39,14 +38,12 @@ public class Student : Entity
     private IStudentStatusState? _state;
 
     public static Result<Student> Create(
-        Guid identityUserId,
         string firstName,
         string lastName,
         string email)
     {
         var student = new Student(Guid.NewGuid())
         {
-            IdentityUserId = identityUserId,
             FirstName = firstName,
             LastName = lastName,
             Email = email

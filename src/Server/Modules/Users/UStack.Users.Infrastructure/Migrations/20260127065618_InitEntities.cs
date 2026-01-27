@@ -6,7 +6,7 @@ using Microsoft.EntityFrameworkCore.Migrations;
 namespace UStack.Users.Infrastructure.Migrations
 {
     /// <inheritdoc />
-    public partial class InitUsers : Migration
+    public partial class InitEntities : Migration
     {
         /// <inheritdoc />
         protected override void Up(MigrationBuilder migrationBuilder)
@@ -16,7 +16,6 @@ namespace UStack.Users.Infrastructure.Migrations
                 columns: table => new
                 {
                     Id = table.Column<Guid>(type: "uuid", nullable: false),
-                    IdentityUserId = table.Column<Guid>(type: "uuid", nullable: false),
                     FirstName = table.Column<string>(type: "character varying(100)", maxLength: 100, nullable: false),
                     LastName = table.Column<string>(type: "character varying(100)", maxLength: 100, nullable: false),
                     Email = table.Column<string>(type: "character varying(200)", maxLength: 200, nullable: false),
@@ -37,8 +36,6 @@ namespace UStack.Users.Infrastructure.Migrations
                     FirstName = table.Column<string>(type: "character varying(100)", maxLength: 100, nullable: false),
                     LastName = table.Column<string>(type: "character varying(100)", maxLength: 100, nullable: false),
                     Email = table.Column<string>(type: "character varying(200)", maxLength: 200, nullable: false),
-                    EmployeeNumber = table.Column<string>(type: "character varying(50)", maxLength: 50, nullable: false),
-                    Department = table.Column<string>(type: "character varying(100)", maxLength: 100, nullable: false),
                     IsActive = table.Column<bool>(type: "boolean", nullable: false, defaultValue: true),
                     State = table.Column<int>(type: "integer", nullable: false),
                     CreatedAt = table.Column<DateTime>(type: "timestamp with time zone", nullable: false)
@@ -47,18 +44,6 @@ namespace UStack.Users.Infrastructure.Migrations
                 {
                     table.PrimaryKey("PK_Teachers", x => x.Id);
                 });
-
-            migrationBuilder.CreateIndex(
-                name: "IX_Students_IdentityUserId",
-                table: "Students",
-                column: "IdentityUserId",
-                unique: true);
-
-            migrationBuilder.CreateIndex(
-                name: "IX_Teachers_EmployeeNumber",
-                table: "Teachers",
-                column: "EmployeeNumber",
-                unique: true);
 
             migrationBuilder.CreateIndex(
                 name: "IX_Teachers_IdentityUserId",

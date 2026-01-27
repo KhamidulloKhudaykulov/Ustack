@@ -27,22 +27,11 @@ public class TeacherConfiguration : IEntityTypeConfiguration<Teacher>
                .IsRequired()
                .HasMaxLength(200);
 
-        builder.Property(t => t.EmployeeNumber)
-               .IsRequired()
-               .HasMaxLength(50);
-
-        builder.Property(t => t.Department)
-               .IsRequired()
-               .HasMaxLength(100);
-
         builder.Property(t => t.IsActive)
                .IsRequired()
                .HasDefaultValue(true);
 
         builder.HasIndex(t => t.IdentityUserId)
-               .IsUnique();
-
-        builder.HasIndex(t => t.EmployeeNumber)
                .IsUnique();
     }
 }

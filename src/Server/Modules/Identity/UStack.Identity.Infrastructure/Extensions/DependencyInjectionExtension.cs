@@ -4,6 +4,10 @@ using Microsoft.Extensions.DependencyInjection;
 using UStack.Identity.Domain.Repositories;
 using UStack.Identity.Infrastructure.Repositories;
 using UStack.Identity.Application.Extensions;
+using UStack.Identity.Application.BridgeInterfaces;
+using UStack.Identity.Infrastructure.BridgeServices;
+
+using System.Net.Http;
 
 namespace UStack.Identity.Infrastructure.Extensions;
 
@@ -13,7 +17,7 @@ public static class DependencyInjection
         this IServiceCollection services,
         IConfiguration config)
     {
-        services.AddDbContext<ApplicationDbContext>(options =>
+        services.AddDbContext<IdentityDbContext>(options =>
         {
             options.UseNpgsql(config.GetConnectionString("Default"));
         });
@@ -21,6 +25,12 @@ public static class DependencyInjection
         services.AddScoped<IUserRepository, UserRepository>();
         services.AddScoped<IRoleRepository, RoleRepository>();
         services.AddScoped<IUnitOfWork, UnitOfWork>();
+
+        services.AddHttpClient<IUserClient, UserClientService>(client =>
+        {
+            client.BaseAddress = new Uri("https://localhost:7293/");
+        });
+
 
         services.AddApplication();
             

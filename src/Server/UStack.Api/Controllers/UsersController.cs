@@ -2,6 +2,7 @@
 using Microsoft.AspNetCore.Mvc;
 using UStack.Api.Contracts;
 using UStack.Identity.Application.Abstraction.Pagination;
+using UStack.Identity.Application.UseCases.AdminActions.CreateTeacher;
 using UStack.Identity.Application.UseCases.Queries.Users.GetUserById;
 using UStack.Identity.Application.UseCases.Queries.Users.GetUsersWithRoles;
 using UStack.Identity.Application.UseCases.Users.ActivateUser;
@@ -52,6 +53,13 @@ public class UsersController : ControllerBase
     public async Task<IActionResult> Login(Guid userId)
     {
         var result = await _sender.Send(new LoginUserCommand(userId));
+        return result.IsSuccess ? Ok() : BadRequest(result.Error);
+    }
+
+    [HttpPost("teachers")]
+    public async Task<IActionResult> CreateTeacher(CreateTeacherCommand command)
+    {
+        var result = await _sender.Send(command);
         return result.IsSuccess ? Ok() : BadRequest(result.Error);
     }
 

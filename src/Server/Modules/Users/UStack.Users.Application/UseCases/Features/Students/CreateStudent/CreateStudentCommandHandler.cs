@@ -19,7 +19,6 @@ namespace UStack.Users.Application.UseCases.Features.Students.CreateStudent
         public async Task<Result<Guid>> Handle(CreateStudentCommand request, CancellationToken cancellationToken)
         {
             var student = Student.Create(
-                    request.IdentityUserId,
                     request.FirstName,
                     request.LastName,
                     request.Email);

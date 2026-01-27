@@ -7,7 +7,5 @@ public record CreateTeacherCommand(
         string FirstName,
         string LastName,
         string Email,
-        string EmployeeNumber,
-        string Department,
         bool IsActive = true
     ) : ICommand<Guid>;

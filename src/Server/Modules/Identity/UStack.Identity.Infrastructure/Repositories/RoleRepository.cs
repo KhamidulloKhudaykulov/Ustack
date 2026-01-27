@@ -6,10 +6,10 @@ namespace UStack.Identity.Infrastructure.Repositories;
 
 public class RoleRepository : IRoleRepository
 {
-    private readonly ApplicationDbContext _dbContext;
+    private readonly IdentityDbContext _dbContext;
     private readonly DbSet<Role> _roles;
 
-    public RoleRepository(ApplicationDbContext dbContext)
+    public RoleRepository(IdentityDbContext dbContext)
     {
         _dbContext = dbContext;
         _roles = _dbContext.Set<Role>();

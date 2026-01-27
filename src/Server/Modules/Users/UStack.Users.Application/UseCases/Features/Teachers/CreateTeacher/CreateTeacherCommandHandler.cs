@@ -23,8 +23,6 @@ public class CreateTeacherCommandHandler : ICommandHandler<CreateTeacherCommand,
             request.FirstName,
             request.LastName,
             request.Email,
-            request.EmployeeNumber,
-            request.Department,
             request.IsActive
         );
 

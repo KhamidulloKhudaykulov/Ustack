@@ -3,9 +3,9 @@ using UStack.Identity.Infrastructure.Extensions;
 
 namespace UStack.Identity.Infrastructure;
 
-public sealed class ApplicationDbContext : DbContext
+public sealed class IdentityDbContext : DbContext
 {
-    public ApplicationDbContext(DbContextOptions<ApplicationDbContext> options)
+    public IdentityDbContext(DbContextOptions<IdentityDbContext> options)
         : base(options) { }
 
     protected override void OnModelCreating(ModelBuilder modelBuilder)

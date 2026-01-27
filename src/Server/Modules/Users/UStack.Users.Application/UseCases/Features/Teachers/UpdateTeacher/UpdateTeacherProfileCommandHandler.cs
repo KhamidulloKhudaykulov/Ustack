@@ -29,7 +29,6 @@ public class UpdateTeacherProfileCommandHandler : ICommandHandler<UpdateTeacherP
             firstName: request.FirstName,
             lastName: request.LastName,
             email: request.Email,
-            department: request.Department,
             isActive: request.IsActive
         );
 

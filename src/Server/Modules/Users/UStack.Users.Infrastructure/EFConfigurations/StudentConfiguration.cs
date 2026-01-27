@@ -12,9 +12,6 @@ public class StudentConfiguration : IEntityTypeConfiguration<Student>
 
         builder.HasKey(s => s.Id);
 
-        builder.Property(s => s.IdentityUserId)
-               .IsRequired();
-
         builder.Property(s => s.FirstName)
                .IsRequired()
                .HasMaxLength(100);
@@ -26,8 +23,5 @@ public class StudentConfiguration : IEntityTypeConfiguration<Student>
         builder.Property(s => s.Email)
                .IsRequired()
                .HasMaxLength(200);
-
-        builder.HasIndex(s => s.IdentityUserId)
-               .IsUnique();
     }
 }

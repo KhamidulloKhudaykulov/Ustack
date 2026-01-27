@@ -8,10 +8,10 @@ using Microsoft.EntityFrameworkCore;
 
 public class UserRepository : IUserRepository
 {
-    private readonly ApplicationDbContext _dbContext;
+    private readonly IdentityDbContext _dbContext;
     private readonly DbSet<User> _users;
 
-    public UserRepository(ApplicationDbContext dbContext)
+    public UserRepository(IdentityDbContext dbContext)
     {
         _dbContext = dbContext;
         _users = _dbContext.Set<User>();
