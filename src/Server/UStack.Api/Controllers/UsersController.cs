@@ -15,7 +15,7 @@ using UStack.Identity.Application.UseCases.Users.RemoveRole;
 namespace UStack.Api.Controllers;
 
 [ApiController]
-[Route("api/users")]
+[Route("api/identity/users")]
 public class UsersController : ControllerBase
 {
     private readonly ISender _sender;

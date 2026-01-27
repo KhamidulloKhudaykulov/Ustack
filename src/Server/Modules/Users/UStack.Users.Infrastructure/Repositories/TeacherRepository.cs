@@ -6,10 +6,10 @@ namespace UStack.Users.Infrastructure.Repositories;
 
 public class TeacherRepository : ITeacherRepository
 {
-    private readonly ApplicationDbContext _dbContext;
+    private readonly UsersDbContext _dbContext;
     private readonly DbSet<Teacher> _teachers;
 
-    public TeacherRepository(ApplicationDbContext dbContext)
+    public TeacherRepository(UsersDbContext dbContext)
     {
         _dbContext = dbContext;
         _teachers = _dbContext.Set<Teacher>();

@@ -9,7 +9,7 @@ using UStack.Identity.Application.UseCases.Roles.UpdateRoleName;
 namespace UStack.Api.Controllers;
 
 [ApiController]
-[Route("api/roles")]
+[Route("api/identity/roles")]
 public class RolesController : BaseController
 {
     private readonly ISender _sender;

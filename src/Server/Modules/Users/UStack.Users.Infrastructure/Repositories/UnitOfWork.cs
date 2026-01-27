@@ -4,9 +4,9 @@ namespace UStack.Users.Infrastructure.Repositories;
 
 public class UnitOfWork : IUnitOfWork
 {
-    private readonly ApplicationDbContext _dbContext;
+    private readonly UsersDbContext _dbContext;
 
-    public UnitOfWork(ApplicationDbContext dbContext)
+    public UnitOfWork(UsersDbContext dbContext)
         => _dbContext = dbContext;
 
     public async Task<int> SaveChangesAsync(CancellationToken cancellationToken = default)

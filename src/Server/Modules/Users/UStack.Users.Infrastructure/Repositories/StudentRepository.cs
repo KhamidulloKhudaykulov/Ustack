@@ -1,15 +1,16 @@
 ﻿using Microsoft.EntityFrameworkCore;
 using UStack.Users.Domain.Entities;
+using UStack.Users.Domain.Enums;
 using UStack.Users.Domain.Repositories;
 
 namespace UStack.Users.Infrastructure.Repositories;
 
 public class StudentRepository : IStudentRepository
 {
-    private readonly ApplicationDbContext _dbContext;
+    private readonly UsersDbContext _dbContext;
     private readonly DbSet<Student> _students;
 
-    public StudentRepository(ApplicationDbContext dbContext)
+    public StudentRepository(UsersDbContext dbContext)
     {
         _dbContext = dbContext;
         _students = _dbContext.Set<Student>();
@@ -57,6 +58,29 @@ public class StudentRepository : IStudentRepository
         var totalCount = await query.CountAsync(cancellationToken);
 
         var students = await query
+            .OrderBy(s => s.CreatedAt)
+            .Skip((pageNumber - 1) * pageSize)
+            .Take(pageSize)
+            .ToListAsync(cancellationToken);
+
+        return (students, totalCount);
+    }
+
+    public async Task<(List<Student> Items, int TotalCount)> GetByStatePagedAsync(
+        UserState state, 
+        int pageNumber, 
+        int pageSize, 
+        CancellationToken cancellationToken = default)
+    {
+        if (pageNumber <= 0) pageNumber = 1;
+        if (pageSize <= 0) pageSize = 10;
+
+        var query = _students.AsNoTracking();
+
+        var totalCount = await query.CountAsync(cancellationToken);
+
+        var students = await query
+            .Where(s => s.State == state)
             .OrderBy(s => s.CreatedAt)
             .Skip((pageNumber - 1) * pageSize)
             .Take(pageSize)

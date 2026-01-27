@@ -9,7 +9,27 @@ namespace UStack.Users.Domain.Entities;
 public class Student : Entity
 {
     public Student(Guid id)
-        : base(id) { }
+        : base(id) 
+    {
+        switch(State)
+        {
+            case UserState.Active:
+                _state = new ActiveStudentState();
+                break;
+            case UserState.Inactive:
+                _state = new InactiveStudentState();
+                break;
+            case UserState.Locked:
+                _state = new LockedStudentState();
+                break;
+            case UserState.Archived:
+                _state = new ArchivedStudentState();
+                break;
+            case UserState.Pending:
+                _state = new PendingStudentState();
+                break;
+        }
+    }
 
     public Guid IdentityUserId { get; private set; }
     public string FirstName { get; private set; } = default!;

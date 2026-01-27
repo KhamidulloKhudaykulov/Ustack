@@ -1,4 +1,5 @@
 ﻿using UStack.Users.Domain.Entities;
+using UStack.Users.Domain.Enums;
 
 namespace UStack.Users.Domain.Repositories;
 
@@ -10,4 +11,5 @@ public interface IStudentRepository
     Task UpdateAsync(Student Student, CancellationToken cancellationToken = default);
     Task DeleteAsync(Student Student, CancellationToken cancellationToken = default);
     Task<(List<Student> Students, int TotalCount)> GetPagedStudentsAsync(int pageNumber, int pageSize, CancellationToken cancellationToken = default);
+    Task<(List<Student> Items, int TotalCount)> GetByStatePagedAsync(UserState state, int pageNumber, int pageSize, CancellationToken cancellationToken = default);
 }

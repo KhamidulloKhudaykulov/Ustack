@@ -12,11 +12,16 @@
       <PrivateAssets>all</PrivateAssets>
       <IncludeAssets>runtime; build; native; contentfiles; analyzers; buildtransitive</IncludeAssets>
     </PackageReference>
+    <PackageReference Include="Swashbuckle.AspNetCore.Swagger" Version="10.1.0" />
+    <PackageReference Include="Swashbuckle.AspNetCore.SwaggerGen" Version="10.1.0" />
+    <PackageReference Include="Swashbuckle.AspNetCore.SwaggerUI" Version="10.1.0" />
   </ItemGroup>
 
   <ItemGroup>
     <ProjectReference Include="..\Modules\Identity\UStack.Identity.Application\UStack.Identity.Application.csproj" />
     <ProjectReference Include="..\Modules\Identity\UStack.Identity.Infrastructure\UStack.Identity.Infrastructure.csproj" />
+    <ProjectReference Include="..\Modules\Users\UStack.Users.Application\UStack.Users.Application.csproj" />
+    <ProjectReference Include="..\Modules\Users\UStack.Users.Infrastructure\UStack.Users.Infrastructure.csproj" />
   </ItemGroup>
 
 </Project>
