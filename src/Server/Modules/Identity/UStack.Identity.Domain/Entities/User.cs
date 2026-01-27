@@ -90,9 +90,6 @@ public class User : Entity
 
     public Result AssignRole(Role role)
     {
-        if (role == null)
-            return Result.Failure(new Error("UserRole.InvalidRole", "Role cannot be null"));
-
         if (_roles.Any(r => r.RoleId == role.Id))
             return Result.Failure(new Error("UserRole.AlreadyAssigned", "User already has this role"));
 

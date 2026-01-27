@@ -10,4 +10,6 @@ public interface IUserClient
         string firstName, 
         string lastName, 
         string email);
+
+    Task<Result> RollBackCreateTeacher(Guid identityUserId);
 }

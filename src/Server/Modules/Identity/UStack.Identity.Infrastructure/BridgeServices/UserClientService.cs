@@ -4,7 +4,7 @@ using UStack.Identity.Domain.Outcome;
 
 namespace UStack.Identity.Infrastructure.BridgeServices;
 
-internal class UserClientService : IUserClient
+public class UserClientService : IUserClient
 {
     private readonly HttpClient _http;
 
@@ -45,5 +45,20 @@ internal class UserClientService : IUserClient
 
         var studentId = await response.Content.ReadFromJsonAsync<Guid>();
         return studentId;
+    }
+
+    public async Task<Result> RollBackCreateTeacher(Guid identityUserId)
+    {
+        var response = await _http.DeleteAsync($"/api/users/teachers/{identityUserId}");
+
+        if (!response.IsSuccessStatusCode)
+        {
+            var msg = await response.Content.ReadAsStringAsync();
+            return Result.Failure(new Error(
+                code: response.StatusCode.ToString(),
+                message: msg));
+        }
+
+        return Result.Success();
     }
 }

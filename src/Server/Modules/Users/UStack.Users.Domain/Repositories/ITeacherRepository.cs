@@ -6,6 +6,7 @@ public interface ITeacherRepository
 {
     Task InsertAsync(Teacher teacher, CancellationToken cancellationToken = default);
     Task<Teacher?> SelectByIdAsync(Guid id, CancellationToken cancellationToken = default);
+    Task<Teacher?> SelectByIdentityIdAsync(Guid identityId, CancellationToken cancellationToken = default);
     Task<Teacher?> SelectByTeacherNameAsync(string teacherName, CancellationToken cancellationToken = default);
     Task UpdateAsync(Teacher Student, CancellationToken cancellationToken = default);
     Task DeleteAsync(Teacher Student, CancellationToken cancellationToken = default);

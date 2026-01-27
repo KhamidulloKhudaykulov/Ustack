@@ -26,6 +26,12 @@ public class TeacherRepository : ITeacherRepository
             .FirstOrDefaultAsync(t => t.Id == id, cancellationToken);
     }
 
+    public async Task<Teacher?> SelectByIdentityIdAsync(Guid identityId, CancellationToken cancellationToken = default)
+    {
+        return await _teachers
+            .FirstOrDefaultAsync(t => t.IdentityUserId == identityId, cancellationToken);
+    }
+
     public async Task<Teacher?> SelectByTeacherNameAsync(string teacherName, CancellationToken cancellationToken = default)
     {
         if (string.IsNullOrWhiteSpace(teacherName)) return null;
