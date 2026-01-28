@@ -1,6 +1,6 @@
 ﻿using MediatR;
 using Microsoft.AspNetCore.Mvc;
-using UStack.Notification.Application.Features.ResetPassword;
+using UStack.Notification.Application.Features.SendEmail;
 
 namespace UStack.Api.Controllers.NotificationModule;
 
@@ -15,8 +15,8 @@ public class NotifyController : ControllerBase
         _sender = sender;
     }
 
-    [HttpPost("send-token")]
-    public async Task<IActionResult> SendResetPasswordToken(ResetPasswordNotificationCommand command)
+    [HttpPost("send/email")]
+    public async Task<IActionResult> SendEmailMessage(SendEmailMessageCommand command)
     {
         try
         {

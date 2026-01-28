@@ -2,4 +2,6 @@
 
 namespace UStack.Identity.Application.UseCases.Users.LoginUser;
 
-public record LoginUserCommand(Guid UserId) : ICommand;
+public record LoginUserCommand(
+    string Username,
+    string Password) : ICommand;

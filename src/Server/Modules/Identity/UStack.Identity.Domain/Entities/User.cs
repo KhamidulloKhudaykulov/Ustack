@@ -80,17 +80,6 @@ public class User : Entity
         return Result.Success();
     }
 
-    public Result ChangePassword(string newPassword)
-    {
-        if (string.IsNullOrWhiteSpace(newPassword))
-            return Result.Failure(new Error(
-                code: "User.InvalidPassword",
-                message: "Password cannot be empty"));
-
-        Password = newPassword;
-        return Result.Success();
-    }
-
     public Result AssignRole(Role role)
     {
         if (_roles.Any(r => r.RoleId == role.Id))

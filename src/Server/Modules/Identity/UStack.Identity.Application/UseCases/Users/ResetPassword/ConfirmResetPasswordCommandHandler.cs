@@ -5,23 +5,23 @@ using UStack.Identity.Domain.Repositories;
 
 namespace UStack.Identity.Application.UseCases.Users.ResetPassword;
 
-public class ConfirmResetPasswordTokenCommandHandler : ICommandHandler<ConfirmResetPasswordTokenCommand>
+public class ConfirmResetPasswordCommandHandler : ICommandHandler<ConfirmResetPasswordCommand>
 {
-    private readonly IInMemoryCacheStorage _memoryCacheStorage;
+    private readonly IInMemoryCacheStorage _inMemoryCacheStorage;
     private readonly IUserRepository _userRepository;
     private readonly IUnitOfWork _unitOfWork;
 
-    public ConfirmResetPasswordTokenCommandHandler(IInMemoryCacheStorage memoryCacheStorage, IUserRepository userRepository, IUnitOfWork unitOfWork)
+    public ConfirmResetPasswordCommandHandler(IInMemoryCacheStorage memoryCacheStorage, IUserRepository userRepository, IUnitOfWork unitOfWork)
     {
-        _memoryCacheStorage = memoryCacheStorage;
+        _inMemoryCacheStorage = memoryCacheStorage;
         _userRepository = userRepository;
         _unitOfWork = unitOfWork;
     }
 
-    public async Task<Result> Handle(ConfirmResetPasswordTokenCommand request, CancellationToken cancellationToken)
+    public async Task<Result> Handle(ConfirmResetPasswordCommand request, CancellationToken cancellationToken)
     {
-        var token = _memoryCacheStorage.GetString($"rp:{request.Email}");
-        if (token == null || token != request.Token)
+        var token = _inMemoryCacheStorage.GetString($"rp-ok:{request.Email}");
+        if (token == null)
             return Result.Failure(new Error("ResetPassword.InvalidToken", "The reset password token is invalid or has expired."));
 
         var user = await _userRepository.SelectByUserNameAsync(request.Email, cancellationToken);
@@ -32,7 +32,7 @@ public class ConfirmResetPasswordTokenCommandHandler : ICommandHandler<ConfirmRe
         await _userRepository.UpdateAsync(user, cancellationToken);
         await _unitOfWork.SaveChangesAsync(cancellationToken);
 
-        _memoryCacheStorage.Remove($"rp:{request.Email}");
+        _inMemoryCacheStorage.Remove($"rp-ok:{request.Email}");
 
         return Result.Success();
     }

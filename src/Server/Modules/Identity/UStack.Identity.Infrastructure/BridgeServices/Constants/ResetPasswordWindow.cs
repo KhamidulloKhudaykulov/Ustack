@@ -1,4 +1,4 @@
-﻿namespace UStack.Notification.Application.Features.ResetPassword;
+﻿namespace UStack.Identity.Infrastructure.BridgeServices.Constants;
 
 public static class ResetPasswordWindow
 {

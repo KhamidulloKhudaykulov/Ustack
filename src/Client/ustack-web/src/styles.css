@@ -1,0 +1,27 @@
+@import "tailwindcss";
+
+@theme {
+  /* Surfaces */
+  --color-surface: #F2F2F2;
+  --color-soft: #ECECEC;
+
+  /* Borders */
+  --color-muted: #D8D8D8;
+
+  /* Text */
+  --color-primary: #2D2D2D;
+  --color-secondary: #4D4D4D;
+  --color-tertiary: #606060;
+}
+
+body{
+  background: linear-gradient(to right, #D8D8D8, #FFFBEB);
+
+  min-height: 100vh;
+
+  font-family: 'Inter', system-ui, -apple-system, BlinkMacSystemFont, 'Segoe UI', sans-serif;
+  margin: 0;
+  padding: 0;
+
+  color: #2D2D2D;
+}

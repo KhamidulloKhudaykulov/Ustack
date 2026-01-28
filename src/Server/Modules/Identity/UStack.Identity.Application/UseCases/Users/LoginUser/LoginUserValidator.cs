@@ -6,7 +6,5 @@ public class LoginUserValidator : AbstractValidator<LoginUserCommand>
 {
     public LoginUserValidator()
     {
-        RuleFor(x => x.UserId)
-            .NotEmpty().WithMessage("UserId cannot be empty");
     }
 }

@@ -1,0 +1,33 @@
+<div class="h-screen w-full flex items-center justify-center">
+  <div class="flex flex-col bg-surface w-120 h-auto p-8 gap-4 rounded-2xl">
+    <h1 class="text-4xl text-primary">Login</h1>
+    <hr>
+    <section class="flex flex-col gap-1">
+      <h1>Username kiriting</h1>
+      <input
+        type="text"
+        [(ngModel)]="email"
+        class="w-full border border-muted p-2 rounded-md mb-4 hover:ring-1 hover:ring-muted focus:outline-none focus:ring-2 focus:ring-tertiary duration-150"
+      />
+      <h1>Parolni kiriting</h1>
+      <input
+        type="password"
+        [(ngModel)]="password"
+        class="w-full border border-muted p-2 rounded-md hover:ring-1 hover:ring-muted focus:outline-none focus:ring-2 focus:ring-tertiary duration-150"
+      />
+    </section>
+    <section class="flex flex-col gap-2 items-center">
+      <button class="underline cursor-pointer hover:font-medium duration-50"
+              (click)="navigateToResetPassword()">
+        Parolni unutdingizmi?
+      </button>
+      <button
+        class="bg-primary text-surface px-4 py-2 rounded-md hover:bg-secondary hover:px-5 cursor-pointer duration-150"
+        (click)="onConfirm()">
+        Kirish
+      </button>
+      <p *ngIf="message" class="text-sm mt-2 text-green-600">{{ message }}</p>
+      <p *ngIf="error" class="text-sm mt-2 text-red-600">{{ error }}</p>
+    </section>
+  </div>
+</div>
