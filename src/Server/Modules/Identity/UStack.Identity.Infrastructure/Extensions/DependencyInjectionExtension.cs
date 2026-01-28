@@ -8,6 +8,8 @@ using UStack.Identity.Application.BridgeInterfaces;
 using UStack.Identity.Infrastructure.BridgeServices;
 
 using System.Net.Http;
+using UStack.Identity.Application.Interfaces;
+using UStack.Identity.Infrastructure.Implementations;
 
 namespace UStack.Identity.Infrastructure.Extensions;
 
@@ -43,6 +45,8 @@ public static class DependencyInjection
             client.BaseAddress = apiBaseUrl;
         });
 
+        services.AddMemoryCache();
+        services.AddSingleton<IInMemoryCacheStorage, InMemoryCacheStorage>();
 
         services.AddApplication();
             

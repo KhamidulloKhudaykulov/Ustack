@@ -1,6 +1,7 @@
 ﻿using System;
 using UStack.Identity.Application.Abstraction.Messaging;
 using UStack.Identity.Application.BridgeInterfaces;
+using UStack.Identity.Application.Interfaces;
 using UStack.Identity.Domain.Outcome;
 using UStack.Identity.Domain.Repositories;
 
@@ -10,11 +11,13 @@ public class ResetPasswordCommandHandler : ICommandHandler<ResetPasswordCommand>
 {
     private readonly INotificationClient _notificationClient;
     private readonly IUserRepository _userRepository;
+    private readonly IInMemoryCacheStorage _memoryCacheStorage;
 
-    public ResetPasswordCommandHandler(INotificationClient notificationClient, IUserRepository userRepository)
+    public ResetPasswordCommandHandler(INotificationClient notificationClient, IUserRepository userRepository, IInMemoryCacheStorage memoryCacheStorage)
     {
         _notificationClient = notificationClient;
         _userRepository = userRepository;
+        _memoryCacheStorage = memoryCacheStorage;
     }
 
     public async Task<Result> Handle(ResetPasswordCommand request, CancellationToken cancellationToken)
@@ -30,6 +33,7 @@ public class ResetPasswordCommandHandler : ICommandHandler<ResetPasswordCommand>
         if (response.IsFailure)
             return Result.Failure(response.Error);
 
+        _memoryCacheStorage.SetString($"rp:{request.Email}", token, TimeSpan.FromMinutes(10));
         return Result.Success();
     }
 }

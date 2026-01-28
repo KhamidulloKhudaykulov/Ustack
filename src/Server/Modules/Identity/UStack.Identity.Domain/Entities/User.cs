@@ -44,6 +44,9 @@ public class User : Entity
         return Result.Success(user);
     }
 
+    public void ResetPassword(string newPassword)
+        => Password = newPassword;
+
     public Result Activate()
     {
         if (IsActive)

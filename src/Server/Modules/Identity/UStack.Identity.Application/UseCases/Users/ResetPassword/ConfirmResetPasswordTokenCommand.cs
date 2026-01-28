@@ -2,5 +2,7 @@
 
 namespace UStack.Identity.Application.UseCases.Users.ResetPassword;
 
-public record ResetPasswordCommand(
-    string Email) : ICommand;
+public record ConfirmResetPasswordTokenCommand(
+    string Email,
+    string Token,
+    string NewPassword) : ICommand;

@@ -79,6 +79,16 @@ public class UsersController : ControllerBase
     {
         var result = await _sender.Send(command);
 
+        return result.IsSuccess 
+            ? Ok(new { message = "Code sent to your email address. Check your email inbox "}) 
+            : BadRequest(result.Error);
+    }
+
+    [HttpPost("confirm-reset-password")]
+    public async Task<IActionResult> ConfirmResetPassword([FromBody] ConfirmResetPasswordTokenCommand command)
+    {
+        var result = await _sender.Send(command);
+
         return result.IsSuccess ? Ok() : BadRequest(result.Error);
     }
 
