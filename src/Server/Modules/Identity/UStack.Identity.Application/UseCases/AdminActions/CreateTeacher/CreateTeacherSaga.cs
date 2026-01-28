@@ -35,7 +35,7 @@ public class CreateTeacherSaga
             return Result.Failure<Guid>(response.Error);
 
         var roleName = RoleName.Teacher.ToString().ToLower();
-        var role = await _roleRepository.SelectByNameAsync("test");
+        var role = await _roleRepository.SelectByNameAsync(roleName);
 
         if (role is null)
         {

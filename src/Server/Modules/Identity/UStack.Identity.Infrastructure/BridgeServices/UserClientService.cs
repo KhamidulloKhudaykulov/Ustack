@@ -1,4 +1,5 @@
 ﻿using System.Net.Http.Json;
+using System.Text.Json;
 using UStack.Identity.Application.BridgeInterfaces;
 using UStack.Identity.Domain.Outcome;
 
@@ -45,6 +46,21 @@ public class UserClientService : IUserClient
 
         var studentId = await response.Content.ReadFromJsonAsync<Guid>();
         return studentId;
+    }
+
+    public async Task<Result<Guid>> GetTeacherGuidByIdentityId(Guid identityUserId)
+    {
+        var response = await _http.GetAsync($"/api/users/teachers/getid/{identityUserId}");
+
+        if (response.IsSuccessStatusCode)
+        {
+            var content = await response.Content.ReadAsStringAsync();
+            var teacherId = JsonSerializer.Deserialize<Guid>(content);
+
+            return teacherId;
+        }
+
+        return Guid.Empty;
     }
 
     public async Task<Result> RollBackCreateTeacher(Guid identityUserId)

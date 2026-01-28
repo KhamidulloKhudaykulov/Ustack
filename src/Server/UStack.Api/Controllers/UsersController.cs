@@ -2,6 +2,7 @@
 using Microsoft.AspNetCore.Mvc;
 using UStack.Api.Contracts;
 using UStack.Identity.Application.Abstraction.Pagination;
+using UStack.Identity.Application.UseCases.AdminActions.AssignTeacherToCourse;
 using UStack.Identity.Application.UseCases.AdminActions.CreateTeacher;
 using UStack.Identity.Application.UseCases.Queries.Users.GetUserById;
 using UStack.Identity.Application.UseCases.Queries.Users.GetUsersWithRoles;
@@ -12,6 +13,7 @@ using UStack.Identity.Application.UseCases.Users.CreateUser;
 using UStack.Identity.Application.UseCases.Users.DeactivateUser;
 using UStack.Identity.Application.UseCases.Users.LoginUser;
 using UStack.Identity.Application.UseCases.Users.RemoveRole;
+using UStack.Identity.Application.UseCases.Users.ResetPassword;
 
 namespace UStack.Api.Controllers;
 
@@ -72,6 +74,14 @@ public class UsersController : ControllerBase
         return result.IsSuccess ? Ok() : BadRequest(result.Error);
     }
 
+    [HttpPost("reset-password")]
+    public async Task<IActionResult> ResetPassword([FromBody] ResetPasswordCommand command)
+    {
+        var result = await _sender.Send(command);
+
+        return result.IsSuccess ? Ok() : BadRequest(result.Error);
+    }
+
     [HttpPost("{userId:guid}/roles/{roleId:guid}")]
     public async Task<IActionResult> AssignRole(Guid userId, Guid roleId)
     {
@@ -109,4 +119,13 @@ public class UsersController : ControllerBase
         var result = await _sender.Send(new GetUsersWithRolesQuery(pagination));
         return result.IsSuccess ? Ok(result.Value) : BadRequest(result.Error);
     }
+
+    [HttpPost("{courseId}/assign-teacher/{teacherId}")]
+    public async Task<IActionResult> AssignTeacherToCourse(Guid courseId, Guid teacherId)
+    {
+        var command = new AssignTeacherToCourseCommand(courseId, teacherId);
+        var result = await _sender.Send(command);
+        return result.IsSuccess ? Ok() : BadRequest(result.Error);
+    }
+
 }

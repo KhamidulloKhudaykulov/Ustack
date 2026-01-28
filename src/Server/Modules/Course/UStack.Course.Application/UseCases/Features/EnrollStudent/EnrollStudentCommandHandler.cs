@@ -1,0 +1,31 @@
+﻿using UStack.Course.Application.Abstraction.Messaging;
+using UStack.Course.Domain.Outcome;
+using UStack.Course.Domain.Repositories;
+
+namespace UStack.Course.Application.UseCases.Features.EnrollStudent;
+
+public class EnrollStudentCommandHandler : ICommandHandler<EnrollStudentCommand>
+{
+    private readonly ICourseRepository _repository;
+    private readonly IUnitOfWork _unitOfWork;
+
+    public EnrollStudentCommandHandler(ICourseRepository repository, IUnitOfWork unitOfWork)
+    {
+        _repository = repository;
+        _unitOfWork = unitOfWork;
+    }
+
+    public async Task<Result> Handle(EnrollStudentCommand request, CancellationToken cancellationToken)
+    {
+        var course = await _repository.SelectByIdAsync(request.CourseId, cancellationToken);
+        if (course == null)
+            return Result.Failure(new Error("Course.NotFound", "Course not found"));
+
+        var result = course.EnrollStudent(request.StudentId);
+        if (result.IsFailure)
+            return result;
+
+        await _unitOfWork.SaveChangesAsync(cancellationToken);
+        return Result.Success();
+    }
+}

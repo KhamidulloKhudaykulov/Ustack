@@ -18,8 +18,11 @@
   </ItemGroup>
 
   <ItemGroup>
+    <ProjectReference Include="..\Modules\Course\UStack.Course.Application\UStack.Course.Application.csproj" />
+    <ProjectReference Include="..\Modules\Course\UStack.Course.Infrastructure\UStack.Course.Infrastructure.csproj" />
     <ProjectReference Include="..\Modules\Identity\UStack.Identity.Application\UStack.Identity.Application.csproj" />
     <ProjectReference Include="..\Modules\Identity\UStack.Identity.Infrastructure\UStack.Identity.Infrastructure.csproj" />
+    <ProjectReference Include="..\Modules\Notification\UStack.Notification.Infrastructure\UStack.Notification.Infrastructure.csproj" />
     <ProjectReference Include="..\Modules\Users\UStack.Users.Application\UStack.Users.Application.csproj" />
     <ProjectReference Include="..\Modules\Users\UStack.Users.Infrastructure\UStack.Users.Infrastructure.csproj" />
   </ItemGroup>

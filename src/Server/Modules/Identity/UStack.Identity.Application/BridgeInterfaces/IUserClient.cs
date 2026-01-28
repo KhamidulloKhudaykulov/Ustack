@@ -11,5 +11,7 @@ public interface IUserClient
         string lastName, 
         string email);
 
+    Task<Result<Guid>> GetTeacherGuidByIdentityId(Guid identityUserId);
+
     Task<Result> RollBackCreateTeacher(Guid identityUserId);
 }

@@ -26,9 +26,21 @@ public static class DependencyInjection
         services.AddScoped<IRoleRepository, RoleRepository>();
         services.AddScoped<IUnitOfWork, UnitOfWork>();
 
+        var apiBaseUrl = new Uri("https://localhost:7293/");
+
         services.AddHttpClient<IUserClient, UserClientService>(client =>
         {
-            client.BaseAddress = new Uri("https://localhost:7293/");
+            client.BaseAddress = apiBaseUrl;
+        });
+
+        services.AddHttpClient<ICourseClient, CourseClientService>(client =>
+        {
+            client.BaseAddress = apiBaseUrl;
+        });
+
+        services.AddHttpClient<INotificationClient, NotificationClientService>(client =>
+        {
+            client.BaseAddress = apiBaseUrl;
         });
 
 

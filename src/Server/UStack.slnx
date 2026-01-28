@@ -1,10 +1,20 @@
 <Solution>
   <Folder Name="/Modules/" />
+  <Folder Name="/Modules/Course/">
+    <Project Path="Modules/Course/UStack.Course.Application/UStack.Course.Application.csproj" />
+    <Project Path="Modules/Course/UStack.Course.Domain/UStack.Course.Domain.csproj" />
+    <Project Path="Modules/Course/UStack.Course.Infrastructure/UStack.Course.Infrastructure.csproj" />
+  </Folder>
   <Folder Name="/Modules/Identity/">
     <Project Path="Modules/Identity/UStack.Identity.Application/UStack.Identity.Application.csproj" />
     <Project Path="Modules/Identity/UStack.Identity.Domain/UStack.Identity.Domain.csproj" />
     <Project Path="Modules/Identity/UStack.Identity.Infrastructure/UStack.Identity.Infrastructure.csproj" />
     <Project Path="Modules/Identity/UStack.Identity.Tests/UStack.Identity.Tests.csproj" />
+  </Folder>
+  <Folder Name="/Modules/Notification/">
+    <Project Path="Modules/Notification/UStack.Notification.Application/UStack.Notification.Application.csproj" />
+    <Project Path="Modules/Notification/UStack.Notification.Domain/UStack.Notification.Domain.csproj" />
+    <Project Path="Modules/Notification/UStack.Notification.Infrastructure/UStack.Notification.Infrastructure.csproj" />
   </Folder>
   <Folder Name="/Modules/Users/">
     <Project Path="Modules/Users/UStack.Users.Application/UStack.Users.Application.csproj" />

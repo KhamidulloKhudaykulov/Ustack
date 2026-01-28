@@ -3,6 +3,7 @@ using Microsoft.AspNetCore.Mvc;
 using UStack.Users.Application.UseCases.Features.Teachers.CreateTeacher;
 using UStack.Users.Application.UseCases.Features.Teachers.DeleteTeacher;
 using UStack.Users.Application.UseCases.Queries.Students.GetStudentById;
+using UStack.Users.Application.UseCases.Queries.Teachers;
 
 namespace UStack.Api.Controllers.UsersModule;
 
@@ -59,5 +60,18 @@ public class TeachersController : ControllerBase
         if (response.IsFailure)
             return BadRequest(response.Error);
         return NoContent();
+    }
+
+    [HttpGet("getid/{identityUserId:guid}")]
+    public async Task<IActionResult> GetIdByIdentityId(
+        Guid identityUserId,
+        CancellationToken cancellationToken)
+    {
+        var response = await _sender.Send(
+            new GetTeacherIdByIdentityIdQuery(identityUserId),
+            cancellationToken);
+        if (response.IsFailure)
+            return NotFound(response.Error);
+        return Ok(response.Value);
     }
 }
